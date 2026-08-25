@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Guidelines — Flagship Growth</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="assets/brand/mark.svg">
+<link rel="stylesheet" href="css/style.css?v=2">
+<style>
+  .bg-section{border-bottom:1px solid var(--line-light);}
+  .bg-section:last-of-type{border-bottom:none;}
+  .bg-label{
+    text-transform:uppercase;letter-spacing:0.1em;font-size:0.8rem;font-weight:600;
+    color:var(--accent);margin-bottom:0.75rem;
+  }
+  .bg-section h2{font-size:var(--fs-h2);max-width:640px;margin-bottom:1rem;}
+  .bg-section > p.intro{color:var(--muted-on-light);max-width:640px;margin-bottom:2.5rem;font-size:1.05rem;}
+
+  /* Logo showcase */
+  .logo-swatch{
+    display:flex;align-items:center;justify-content:center;padding:4rem 2rem;border-radius:var(--radius);
+  }
+  .logo-swatch.light{background:var(--paper-2);}
+  .logo-swatch.dark{background:var(--ink);}
+  .logo-swatch img{max-width:100%;height:auto;width:340px;}
+  .logo-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem;}
+  .logo-caption{display:flex;justify-content:space-between;align-items:center;margin-top:0.75rem;font-size:0.9rem;color:var(--muted-on-light);}
+  .logo-caption a{color:var(--accent);font-weight:600;text-decoration:underline;}
+
+  .mark-row{display:flex;align-items:flex-end;gap:2.5rem;flex-wrap:wrap;padding:2.5rem;background:var(--paper-2);border-radius:var(--radius);margin-bottom:2rem;}
+  .mark-item{display:flex;flex-direction:column;align-items:center;gap:0.75rem;}
+  .mark-item img{display:block;}
+  .mark-item span{font-size:0.8rem;color:var(--muted-on-light);}
+
+  .clearspace-demo{
+    position:relative;display:inline-block;padding:40px;background:var(--paper-2);border-radius:var(--radius);margin-bottom:2rem;
+  }
+  .clearspace-demo img{width:220px;display:block;}
+  .clearspace-demo::before{
+    content:'';position:absolute;inset:14px;border:1.5px dashed var(--accent);border-radius:6px;pointer-events:none;
+  }
+
+  .donts-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem;}
+  .dont-card{border:1px solid var(--line-light);border-radius:var(--radius);padding:1.5rem;display:flex;flex-direction:column;gap:1rem;}
+  .dont-preview{
+    height:100px;display:flex;align-items:center;justify-content:center;background:var(--paper-2);border-radius:10px;
+  }
+  .dont-preview img{width:140px;}
+  .dont-card p{font-size:0.9rem;color:var(--muted-on-light);}
+  .dont-card p::before{content:'✕ ';color:#E23E3E;font-weight:700;}
+
+  /* Color */
+  .swatch-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
+  .swatch{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line-light);}
+  .swatch-color{height:110px;}
+  .swatch-info{padding:1rem 1.25rem;background:var(--paper);}
+  .swatch-info h4{font-size:1rem;margin-bottom:0.2rem;}
+  .swatch-info code{font-size:0.85rem;color:var(--muted-on-light);font-family:monospace;}
+  .swatch-info p{font-size:0.85rem;color:var(--muted-on-light);margin-top:0.5rem;}
+
+  /* Type specimen */
+  .type-row{padding:1.75rem 0;border-top:1px solid var(--line-light);display:flex;align-items:baseline;justify-content:space-between;gap:2rem;flex-wrap:wrap;}
+  .type-row:last-child{border-bottom:1px solid var(--line-light);}
+  .type-sample{font-family:var(--font-display);}
+  .type-meta{font-size:0.85rem;color:var(--muted-on-light);white-space:nowrap;}
+  .type-body-sample{font-family:var(--font-body);font-size:1.05rem;max-width:520px;}
+
+  /* Voice */
+  .voice-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+  .voice-card{border:1px solid var(--line-light);border-radius:var(--radius);padding:1.75rem;}
+  .voice-card h4{font-size:1.05rem;margin-bottom:0.75rem;}
+  .voice-card .yes{color:var(--accent);font-weight:700;}
+  .voice-card .no{color:#E23E3E;font-weight:700;}
+  .voice-card p{font-size:0.95rem;color:var(--muted-on-light);margin-bottom:0.5rem;}
+
+  @media (max-width:800px){
+    .logo-grid,.donts-grid,.swatch-grid,.voice-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="index.html" class="logo">Flagship<span>Growth</span></a>
+    <nav class="main-nav">
+      <a href="work.html">Work</a>
+      <a href="services.html">Services</a>
+      <a href="about.html">About</a>
+    </nav>
+    <a href="contact.html" class="btn btn-pill btn-ink header-cta">Book a Call</a>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <p class="eyebrow">Internal reference</p>
+    <h1>Brand Guidelines</h1>
+    <p class="page-hero-sub">Everything needed to apply the Flagship Growth identity consistently — logo files, color, type, and voice. Last updated 2026.</p>
+  </section>
+
+  <!-- LOGO -->
+  <section class="bg-section">
+    <p class="bg-label">01 — Logo</p>
+    <h2>One lockup. Two backgrounds.</h2>
+    <p class="intro">The primary logo is the mark plus wordmark, set in Space Grotesk. Use the light-background version on paper/cream or white surfaces, and the dark-background version on ink or photography.</p>
+
+    <div class="logo-grid">
+      <div>
+        <div class="logo-swatch light"><img src="assets/brand/logo-light-bg.svg" alt="Flagship Growth logo, light background version"></div>
+        <div class="logo-caption"><span>For light backgrounds</span><a href="assets/brand/logo-light-bg.svg" download>Download SVG</a></div>
+      </div>
+      <div>
+        <div class="logo-swatch dark"><img src="assets/brand/logo-dark-bg.svg" alt="Flagship Growth logo, dark background version"></div>
+        <div class="logo-caption"><span>For dark backgrounds</span><a href="assets/brand/logo-dark-bg.svg" download>Download SVG</a></div>
+      </div>
+    </div>
+
+    <p class="bg-label" style="margin-top:2.5rem;">Icon mark</p>
+    <p class="intro">Three ascending bars topped with a flag — growth, with a flagship flying at the peak. Use the standalone mark for favicons, social avatars, and anywhere the full wordmark won't fit.</p>
+    <div class="mark-row">
+      <div class="mark-item"><img src="assets/brand/mark.svg" width="96" height="96"><span>96px — light bg</span></div>
+      <div class="mark-item"><img src="assets/brand/mark.svg" width="48" height="48"><span>48px</span></div>
+      <div class="mark-item"><img src="assets/brand/mark.svg" width="24" height="24"><span>24px (minimum)</span></div>
+      <div class="mark-item" style="background:var(--ink);padding:1rem;border-radius:10px;"><img src="assets/brand/mark-dark.svg" width="64" height="64"><span style="color:var(--muted-on-dark)">64px — dark bg</span></div>
+    </div>
+    <div class="logo-caption" style="margin-bottom:2.5rem;">
+      <span>Available as SVG and PNG (512 / 256 / 128 / 32px)</span>
+      <a href="assets/brand/mark.svg" download>Download mark.svg</a>
+    </div>
+
+    <p class="bg-label">Clearspace &amp; minimum size</p>
+    <p class="intro">Keep clear space around the logo equal to the height of the flag pennant on all sides — don't let text, edges, or other logos crowd it. Never scale the full lockup smaller than 100px wide.</p>
+    <div class="clearspace-demo">
+      <img src="assets/brand/logo-light-bg.svg" alt="Clearspace example">
+    </div>
+
+    <p class="bg-label">Don't</p>
+    <div class="donts-grid">
+      <div class="dont-card">
+        <div class="dont-preview"><img src="assets/brand/logo-light-bg.svg" style="filter:hue-rotate(120deg)"></div>
+        <p>Recolor the logo outside the approved palette.</p>
+      </div>
+      <div class="dont-card">
+        <div class="dont-preview"><img src="assets/brand/logo-light-bg.svg" style="transform:scaleX(1.4)"></div>
+        <p>Stretch, skew, or distort the proportions.</p>
+      </div>
+      <div class="dont-card">
+        <div class="dont-preview"><img src="assets/brand/mark.svg" width="90" style="filter:drop-shadow(4px 6px 4px rgba(0,0,0,.5))"></div>
+        <p>Add drop shadows, glows, or bevel effects.</p>
+      </div>
+      <div class="dont-card">
+        <div class="dont-preview" style="background:#D6FF3F;"><img src="assets/brand/logo-light-bg.svg"></div>
+        <p>Place the light-bg version on low-contrast or busy backgrounds.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLOR -->
+  <section class="bg-section">
+    <p class="bg-label">02 — Color</p>
+    <h2>A small, deliberate palette.</h2>
+    <p class="intro">Ink and paper carry the page. Electric blue is the one accent — used for links, CTAs, and emphasis. Acid lime is reserved for small, rare highlights (the flag, a stat callout). If everything is an accent, nothing is.</p>
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#0B0D12;"></div>
+        <div class="swatch-info"><h4>Ink</h4><code>#0B0D12</code><p>Primary text, dark section backgrounds</p></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#F6F3EC;border-bottom:1px solid var(--line-light);"></div>
+        <div class="swatch-info"><h4>Paper</h4><code>#F6F3EC</code><p>Primary background</p></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#ECE7D9;"></div>
+        <div class="swatch-info"><h4>Paper 2</h4><code>#ECE7D9</code><p>Cards, subtle section fills</p></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#2447FF;"></div>
+        <div class="swatch-info"><h4>Accent Blue</h4><code>#2447FF</code><p>Primary accent — links, CTAs, emphasis</p></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#D6FF3F;"></div>
+        <div class="swatch-info"><h4>Accent Lime</h4><code>#D6FF3F</code><p>Rare highlight only — never body text or large fills</p></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#6B6558;"></div>
+        <div class="swatch-info"><h4>Muted (on light)</h4><code>#6B6558</code><p>Secondary text on paper</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TYPOGRAPHY -->
+  <section class="bg-section">
+    <p class="bg-label">03 — Typography</p>
+    <h2>Space Grotesk for voice. Inter for clarity.</h2>
+    <p class="intro">Space Grotesk carries headlines, buttons, stats, and labels — it's the personality. Inter handles body copy and anything that needs to be read at length. Never substitute a system font for either.</p>
+
+    <div class="type-row">
+      <span class="type-sample" style="font-size:3rem;font-weight:700;">Aa Bb Cc</span>
+      <span class="type-meta">Space Grotesk / 700 / Headlines, hero type</span>
+    </div>
+    <div class="type-row">
+      <span class="type-sample" style="font-size:2rem;font-weight:600;">Aa Bb Cc 123</span>
+      <span class="type-meta">Space Grotesk / 600 / Subheads, stat numbers, buttons</span>
+    </div>
+    <div class="type-row">
+      <span class="type-sample" style="font-size:1.5rem;font-weight:500;">Aa Bb Cc 123</span>
+      <span class="type-meta">Space Grotesk / 500 / Labels, eyebrows, tags</span>
+    </div>
+    <div class="type-row">
+      <span class="type-body-sample" style="font-weight:400;">Full-service management, creative, and media for CPG brands growing on Amazon, TikTok Shop, and Walmart.</span>
+      <span class="type-meta">Inter / 400 / Body copy</span>
+    </div>
+    <div class="type-row">
+      <span class="type-body-sample" style="font-weight:600;">Senior strategists, sharp creative, and account management that answers the phone.</span>
+      <span class="type-meta">Inter / 600 / Emphasis, nav, UI labels</span>
+    </div>
+  </section>
+
+  <!-- VOICE -->
+  <section class="bg-section">
+    <p class="bg-label">04 — Voice</p>
+    <h2>Direct. Specific. No filler.</h2>
+    <p class="intro">We write like an operator, not a marketer. Every claim is backed by a real number where one exists — no vague "results-driven" language. Confidence comes from specificity, not adjectives.</p>
+    <div class="voice-grid">
+      <div class="voice-card">
+        <h4><span class="yes">Say this</span></h4>
+        <p>"+97% YoY unit growth."</p>
+        <p>"We're the team you forget to worry about."</p>
+        <p>"Earned Amazon's Choice on the brand's highest-demand keyword."</p>
+      </div>
+      <div class="voice-card">
+        <h4><span class="no">Not this</span></h4>
+        <p>"Massive growth results."</p>
+        <p>"We're passionate about your success."</p>
+        <p>"Best-in-class optimization solutions."</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <a href="index.html" class="logo">Flagship<span>Growth</span></a>
+    <a href="contact.html" class="btn btn-pill btn-outline-light">Book a Call →</a>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Flagship Growth. All rights reserved.</span>
+  </div>
+</footer>
+
+</body>
+</html>
