@@ -431,6 +431,41 @@ section{
 .work-img-mark .mark-word{font-family:var(--font-display);font-weight:700;font-size:2.6rem;color:var(--paper);letter-spacing:-0.02em;}
 .work-img-mark .mark-sub{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--muted-on-dark);}
 
+/* ===== Blog index ===== */
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.blog-card{
+  display:flex;flex-direction:column;gap:0.9rem;padding:1.75rem;
+  border:1px solid var(--line-light);border-radius:var(--radius);
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.blog-card:hover{transform:translateY(-4px);box-shadow:0 16px 32px -20px rgba(11,13,18,0.25);}
+.blog-card-tag{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;font-weight:600;color:var(--accent);}
+.blog-card h3{font-size:1.25rem;line-height:1.2;}
+.blog-card p{color:var(--muted-on-light);font-size:0.92rem;}
+.blog-card-meta{font-size:0.8rem;color:var(--muted-on-light);margin-top:auto;padding-top:0.5rem;border-top:1px solid var(--line-light);}
+
+/* ===== Blog article ===== */
+.article-hero{padding-top:calc(clamp(4rem,8vw,7rem) + 4rem);padding-bottom:1rem;max-width:760px;}
+.article-hero h1{font-size:var(--fs-h1);margin:0.75rem 0 1.25rem;}
+.article-meta{display:flex;gap:1rem;align-items:center;color:var(--muted-on-light);font-size:0.9rem;flex-wrap:wrap;}
+.article-meta .dot{opacity:0.5;}
+.article-body{max-width:700px;padding-top:1rem;}
+.article-body p{font-size:1.08rem;line-height:1.75;color:var(--ink);margin-bottom:1.4rem;}
+.article-body h2{font-size:1.6rem;margin:2.5rem 0 1rem;}
+.article-body strong{font-weight:700;}
+.article-body .lede{font-size:1.3rem;font-weight:600;color:var(--ink);line-height:1.5;}
+.article-cta{
+  max-width:700px;margin-top:1rem;padding:2.25rem;background:var(--ink);color:var(--paper);
+  border-radius:var(--radius);display:flex;flex-direction:column;gap:0.75rem;align-items:flex-start;
+}
+.article-cta h3{font-size:var(--fs-h3);}
+.article-cta p{color:var(--muted-on-dark);}
+.article-back{display:inline-block;margin-top:2rem;font-weight:600;font-size:0.95rem;border-bottom:1px solid currentColor;padding-bottom:2px;}
+
+@media (max-width:900px){
+  .blog-grid{grid-template-columns:1fr;}
+}
+
 /* ===== Reveal animation base state ===== */
 .reveal-up{opacity:0;transform:translateY(24px);}
 
