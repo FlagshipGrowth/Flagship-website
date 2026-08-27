@@ -423,6 +423,10 @@ section{
   .contact-grid{grid-template-columns:1fr;}
 }
 
+.calendly-section{padding-top:1rem;}
+.calendly-section .section-head{margin-bottom:1.5rem;}
+.calendly-inline-widget{border:1px solid var(--line-light);border-radius:var(--radius);overflow:hidden;}
+
 /* ===== No-image "brand mark" treatment (used when no creative asset exists yet) ===== */
 .work-img-mark{
   background-color:var(--ink);background-image:none;
