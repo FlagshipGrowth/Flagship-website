@@ -26,6 +26,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://flagshipgrowth.com/privacy.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
     <loc>https://flagshipgrowth.com/blog/index.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

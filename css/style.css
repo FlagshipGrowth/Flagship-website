@@ -257,7 +257,10 @@ section{
 .footer-bottom{
   max-width:var(--container);margin:2.5rem auto 0;padding-top:1.5rem;
   border-top:1px solid var(--line-dark);font-size:0.85rem;color:var(--muted-on-dark);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
 }
+.footer-bottom a{color:var(--muted-on-dark);}
+.footer-bottom a:hover{color:var(--paper);text-decoration:underline;}
 
 /* ===== Generic page hero (Work / Services / About) ===== */
 .page-hero{padding-top:calc(clamp(4rem,8vw,7rem) + 4rem);padding-bottom:1rem;}
@@ -423,6 +426,7 @@ section{
   .contact-grid{grid-template-columns:1fr;}
 }
 
+.pricing-note{padding:3rem clamp(1.5rem,5vw,4rem) 1rem;max-width:var(--container);margin:0 auto;}
 .calendly-section{padding-top:1rem;}
 .calendly-section .section-head{margin-bottom:1.5rem;}
 .calendly-inline-widget{border:1px solid var(--line-light);border-radius:var(--radius);overflow:hidden;}
