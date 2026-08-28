@@ -135,11 +135,17 @@ section{
 
 /* ===== Credentials ===== */
 .credentials-strip{
-  display:flex;align-items:center;justify-content:center;gap:2.5rem;flex-wrap:wrap;
-  padding:2rem clamp(1.5rem,5vw,4rem);max-width:var(--container);margin:0 auto;
+  text-align:center;padding:2.5rem clamp(1.5rem,5vw,4rem) 3rem;
+  max-width:var(--container);margin:1rem auto 0;border-top:1px solid var(--line-light);
 }
-.credential-badge{height:56px;width:auto;object-fit:contain;}
-.credential-badge-round{height:76px;}
+.credentials-strip .eyebrow{margin-bottom:1.5rem;}
+.credentials-row{display:flex;align-items:center;justify-content:center;gap:3.5rem;flex-wrap:wrap;}
+.credential-badge{height:120px;width:auto;object-fit:contain;}
+.credential-badge-round{height:150px;}
+@media (max-width:600px){
+  .credential-badge{height:90px;}
+  .credential-badge-round{height:112px;}
+}
 
 /* ===== Marquee ===== */
 .marquee-section{padding:1.75rem 0;background:var(--ink);max-width:100%;overflow:hidden;}
