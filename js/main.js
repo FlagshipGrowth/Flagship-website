@@ -84,3 +84,24 @@ if(window.gsap){
     el.style.transform = 'none';
   });
 }
+
+// ===== Safety net: guarantee content is visible even if an animation stalls =====
+// Covers: hidden/background tabs throttling requestAnimationFrame, GSAP/CDN
+// hiccups, or any other case where the reveal animation never completes.
+// Kills any in-progress GSAP tween first — just setting inline styles isn't
+// enough, since an active tween overwrites them again on its next tick.
+setTimeout(() => {
+  const stuck = Array.from(document.querySelectorAll('.reveal-up, .reveal-word')).filter(el => {
+    const cs = getComputedStyle(el);
+    return parseFloat(cs.opacity) < 1 || cs.transform !== 'none';
+  });
+  if(!stuck.length) return;
+  // Kill every ScrollTrigger/tween outright — past the intended reveal
+  // window, nothing should still be animating these elements.
+  if(window.ScrollTrigger) ScrollTrigger.getAll().forEach(st => st.kill());
+  if(window.gsap) gsap.killTweensOf('.reveal-up, .reveal-word');
+  stuck.forEach(el => {
+    el.style.opacity = 1;
+    el.style.transform = 'none';
+  });
+}, 2500);
