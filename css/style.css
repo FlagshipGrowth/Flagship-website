@@ -72,6 +72,7 @@ section{
 }
 .main-nav a:hover::after{width:100%;}
 .header-cta{margin-left:auto;margin-right:1rem;}
+.header-partner-login{padding:0.7rem 1.3rem;font-size:0.9rem;}
 .nav-toggle{display:none;background:none;border:none;width:28px;height:20px;position:relative;cursor:pointer;}
 .nav-toggle span{position:absolute;left:0;right:0;height:2px;background:var(--ink);transition:.3s;}
 .nav-toggle span:first-child{top:0;}
@@ -493,7 +494,7 @@ section{
 
 /* ===== Responsive ===== */
 @media (max-width:900px){
-  .main-nav,.header-cta{display:none;}
+  .main-nav,.header-cta,.header-partner-login{display:none;}
   .nav-toggle{display:block;}
   .hero-stats{grid-template-columns:repeat(2,1fr);}
   .work-grid,.process-grid,.testimonial-grid,.team-grid,.results-grid{grid-template-columns:1fr;}
