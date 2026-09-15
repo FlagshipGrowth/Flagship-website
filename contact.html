@@ -241,6 +241,22 @@ src="https://www.facebook.com/tr?id=779041874461329&ev=PageView&noscript=1"
     submitBtn.textContent = 'Sending…';
     document.getElementById('formError').hidden = true;
 
+    // Fire-and-forget: also drop this straight into the Flagship Insights AI CRM as a lead.
+    // Failure here must never affect the visible success/error state below — formsubmit.co is
+    // still the actual form handler and source of truth for whether the submission "worked."
+    fetch('https://flagship-insights-ai.netlify.app/api/leads/from-contact-form', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: leadForm.name.value,
+        email: leadForm.email.value,
+        company: leadForm.company.value,
+        revenue: leadForm.revenue.value,
+        note: leadForm.note.value,
+        honey: leadForm._honey.value
+      })
+    }).catch(function(){});
+
     fetch(leadForm.action, {
       method: 'POST',
       body: new FormData(leadForm),
