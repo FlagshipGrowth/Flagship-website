@@ -239,9 +239,16 @@ src="https://www.facebook.com/tr?id=779041874461329&ev=PageView&noscript=1"
     submitBtn.textContent = 'Sending…';
     document.getElementById('formError').hidden = true;
 
-    // Fire-and-forget: also drop this straight into the Flagship Insights AI CRM as a lead.
-    // Failure here must never affect the visible success/error state below — formsubmit.co is
-    // still the actual form handler and source of truth for whether the submission "worked."
+    // Fire-and-forget: also email the lead via FormSubmit. Failure here must never affect
+    // the visible success/error state below — the CRM call is the source of truth for
+    // whether the submission "worked," since FormSubmit.co has proven unreliable (has gone
+    // down outright before). Once delivered, this keeps working automatically.
+    fetch('https://formsubmit.co/ajax/joey@flagshipgrowth.com', {
+      method: 'POST',
+      body: new FormData(leadForm),
+      headers: { 'Accept': 'application/json' }
+    }).catch(function(){});
+
     fetch('https://flagship-insights-ai.netlify.app/api/leads/from-contact-form', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -253,12 +260,6 @@ src="https://www.facebook.com/tr?id=779041874461329&ev=PageView&noscript=1"
         note: leadForm.note.value,
         honey: leadForm._honey.value
       })
-    }).catch(function(){});
-
-    fetch('https://formsubmit.co/ajax/joey@flagshipgrowth.com', {
-      method: 'POST',
-      body: new FormData(leadForm),
-      headers: { 'Accept': 'application/json' }
     }).then(function(response){
       if (response.ok) {
         document.getElementById('formFields').hidden = true;
