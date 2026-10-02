@@ -57,51 +57,22 @@ const countObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('[data-count]').forEach(el => countObserver.observe(el));
 
-// ===== GSAP reveals =====
-if(window.gsap){
-  gsap.registerPlugin(ScrollTrigger);
-
-  // Hero words
-  gsap.to('.reveal-word', {
-    y:'0%', duration:0.9, ease:'power4.out', stagger:0.06, delay:0.2
-  });
-
-  // Generic reveal-up elements
-  document.querySelectorAll('.reveal-up').forEach((el) => {
-    gsap.to(el, {
-      opacity:1, y:0, duration:0.8, ease:'power3.out',
-      scrollTrigger:{
-        trigger: el,
-        start:'top 88%',
-        toggleActions:'play none none none'
+// ===== Scroll reveals =====
+// Hero content animates with pure CSS (see style.css). Everything else with
+// .reveal-up fades up the first time it scrolls into view. CSS transitions
+// (not rAF-driven tweens) mean a throttled background tab can't leave content
+// stuck half-hidden — the transition just completes when the tab is shown.
+const revealEls = document.querySelectorAll('.reveal-up');
+if('IntersectionObserver' in window){
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
       }
     });
-  });
+  }, {rootMargin:'0px 0px -8% 0px'});
+  revealEls.forEach(el => revealObserver.observe(el));
 } else {
-  // Fallback: just show everything if GSAP fails to load
-  document.querySelectorAll('.reveal-up, .reveal-word').forEach(el => {
-    el.style.opacity = 1;
-    el.style.transform = 'none';
-  });
+  revealEls.forEach(el => el.classList.add('is-visible'));
 }
-
-// ===== Safety net: guarantee content is visible even if an animation stalls =====
-// Covers: hidden/background tabs throttling requestAnimationFrame, GSAP/CDN
-// hiccups, or any other case where the reveal animation never completes.
-// Kills any in-progress GSAP tween first — just setting inline styles isn't
-// enough, since an active tween overwrites them again on its next tick.
-setTimeout(() => {
-  const stuck = Array.from(document.querySelectorAll('.reveal-up, .reveal-word')).filter(el => {
-    const cs = getComputedStyle(el);
-    return parseFloat(cs.opacity) < 1 || cs.transform !== 'none';
-  });
-  if(!stuck.length) return;
-  // Kill every ScrollTrigger/tween outright — past the intended reveal
-  // window, nothing should still be animating these elements.
-  if(window.ScrollTrigger) ScrollTrigger.getAll().forEach(st => st.kill());
-  if(window.gsap) gsap.killTweensOf('.reveal-up, .reveal-word');
-  stuck.forEach(el => {
-    el.style.opacity = 1;
-    el.style.transform = 'none';
-  });
-}, 2500);

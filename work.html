@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>document.documentElement.classList.add('js');</script>
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JSRFREK2J3"></script>
@@ -77,10 +78,12 @@ src="https://www.facebook.com/tr?id=779041874461329&ev=PageView&noscript=1"
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"></noscript>
 <link rel="icon" type="image/svg+xml" href="assets/brand/mark.svg">
 <link rel="icon" type="image/png" href="assets/brand/favicon-32.png">
-<link rel="stylesheet" href="css/style.css?v=2">
+<link rel="stylesheet" href="css/style.css?v=3">
 </head>
 <body>
 
@@ -121,8 +124,8 @@ src="https://www.facebook.com/tr?id=779041874461329&ev=PageView&noscript=1"
   <!-- CASE STUDIES -->
   <section class="case-studies">
 
-    <article class="case-study reveal-up" id="opopop">
-      <div class="case-media" style="background-image:url('assets/img/work/opopop.jpg')" role="img" aria-label="Opopop gourmet microwave popcorn brand hero, featuring the No Burn Guarantee packaging"></div>
+    <article class="case-study" id="opopop">
+      <picture class="case-media"><source type="image/webp" srcset="assets/img/work/opopop-600.webp 600w, assets/img/work/opopop-900.webp 900w, assets/img/work/opopop-1200.webp 1200w" sizes="(max-width:900px) calc(100vw - 2.5rem), 55vw"><img src="assets/img/work/opopop-1200.jpg" alt="Opopop gourmet microwave popcorn brand hero, featuring the No Burn Guarantee packaging" width="1200" height="600" fetchpriority="high" decoding="async"></picture>
       <div class="case-copy">
         <p class="work-tag">Amazon + Walmart</p>
         <h2>Opopop</h2>
@@ -138,7 +141,7 @@ src="https://www.facebook.com/tr?id=779041874461329&ev=PageView&noscript=1"
     </article>
 
     <article class="case-study reverse reveal-up" id="rationale-brewing">
-      <div class="case-media" style="background-image:url('assets/img/work/rationale-brewing.jpg')" role="img" aria-label="Rationale Brewing non-alcoholic craft beer 6-pack and can lineup"></div>
+      <picture class="case-media"><source type="image/webp" srcset="assets/img/work/rationale-brewing-600.webp 600w, assets/img/work/rationale-brewing-900.webp 900w, assets/img/work/rationale-brewing-1200.webp 1200w" sizes="(max-width:900px) calc(100vw - 2.5rem), 55vw"><img src="assets/img/work/rationale-brewing-1200.jpg" alt="Rationale Brewing non-alcoholic craft beer 6-pack and can lineup" width="1200" height="600" loading="lazy" decoding="async"></picture>
       <div class="case-copy">
         <p class="work-tag">Amazon + Walmart</p>
         <h2>Rationale Brewing</h2>
@@ -153,7 +156,7 @@ src="https://www.facebook.com/tr?id=779041874461329&ev=PageView&noscript=1"
     </article>
 
     <article class="case-study reveal-up" id="mac-energy">
-      <div class="case-media" style="background-image:url('assets/img/work/mac-energy.jpg')" role="img" aria-label="Mac Energy zero-sugar energy drink can lineup, MacBerry Lychee flavor"></div>
+      <picture class="case-media"><source type="image/webp" srcset="assets/img/work/mac-energy-600.webp 600w, assets/img/work/mac-energy-900.webp 900w, assets/img/work/mac-energy-1200.webp 1200w" sizes="(max-width:900px) calc(100vw - 2.5rem), 55vw"><img src="assets/img/work/mac-energy-1200.jpg" alt="Mac Energy zero-sugar energy drink can lineup, MacBerry Lychee flavor" width="1200" height="600" loading="lazy" decoding="async"></picture>
       <div class="case-copy">
         <p class="work-tag">Amazon Launch</p>
         <h2>Mac Energy</h2>
@@ -167,7 +170,7 @@ src="https://www.facebook.com/tr?id=779041874461329&ev=PageView&noscript=1"
     </article>
 
     <article class="case-study reverse reveal-up" id="smood-sweets">
-      <div class="case-media" style="background-image:url('assets/img/work/smood-sweets.jpg')" role="img" aria-label="Smood Sweets candy-coated California date snacks packaging"></div>
+      <picture class="case-media"><source type="image/webp" srcset="assets/img/work/smood-sweets-600.webp 600w, assets/img/work/smood-sweets-900.webp 900w, assets/img/work/smood-sweets-1200.webp 1200w" sizes="(max-width:900px) calc(100vw - 2.5rem), 55vw"><img src="assets/img/work/smood-sweets-1200.jpg" alt="Smood Sweets candy-coated California date snacks packaging" width="1200" height="1200" loading="lazy" decoding="async"></picture>
       <div class="case-copy">
         <p class="work-tag">Amazon + TikTok Shop</p>
         <h2>Smood Sweets</h2>
@@ -181,7 +184,7 @@ src="https://www.facebook.com/tr?id=779041874461329&ev=PageView&noscript=1"
     </article>
 
     <article class="case-study reveal-up" id="supermush">
-      <div class="case-media" style="background-image:url('assets/img/work/supermush.jpg')" role="img" aria-label="SuperMush functional mushroom and adaptogen gummies packaging"></div>
+      <picture class="case-media"><source type="image/webp" srcset="assets/img/work/supermush-600.webp 600w, assets/img/work/supermush-900.webp 900w, assets/img/work/supermush-1200.webp 1200w" sizes="(max-width:900px) calc(100vw - 2.5rem), 55vw"><img src="assets/img/work/supermush-1200.jpg" alt="SuperMush functional mushroom and adaptogen gummies packaging" width="1200" height="600" loading="lazy" decoding="async"></picture>
       <div class="case-copy">
         <p class="work-tag">Amazon + Walmart</p>
         <h2>SuperMush</h2>
@@ -197,7 +200,7 @@ src="https://www.facebook.com/tr?id=779041874461329&ev=PageView&noscript=1"
     </article>
 
     <article class="case-study reverse reveal-up" id="reshoevn8r">
-      <div class="case-media" style="background-image:url('assets/img/work/reshoevn8r.jpg')" role="img" aria-label="Reshoevn8r sneaker and shoe cleaning solution product lineup"></div>
+      <picture class="case-media"><source type="image/webp" srcset="assets/img/work/reshoevn8r-600.webp 600w, assets/img/work/reshoevn8r-900.webp 900w, assets/img/work/reshoevn8r-1200.webp 1200w" sizes="(max-width:900px) calc(100vw - 2.5rem), 55vw"><img src="assets/img/work/reshoevn8r-1200.jpg" alt="Reshoevn8r sneaker and shoe cleaning solution product lineup" width="1200" height="600" loading="lazy" decoding="async"></picture>
       <div class="case-copy">
         <p class="work-tag">Amazon + Walmart</p>
         <h2>Reshoevn8r</h2>
@@ -211,7 +214,7 @@ src="https://www.facebook.com/tr?id=779041874461329&ev=PageView&noscript=1"
     </article>
 
     <article class="case-study reveal-up" id="dormeo">
-      <div class="case-media" style="background-image:url('assets/img/work/dormeo.jpg')" role="img" aria-label="Dormeo SnowTek cooling gel memory foam mattress topper lifestyle image"></div>
+      <picture class="case-media"><source type="image/webp" srcset="assets/img/work/dormeo-600.webp 600w, assets/img/work/dormeo-900.webp 900w" sizes="(max-width:900px) calc(100vw - 2.5rem), 55vw"><img src="assets/img/work/dormeo-900.jpg" alt="Dormeo SnowTek cooling gel memory foam mattress topper lifestyle image" width="900" height="675" loading="lazy" decoding="async"></picture>
       <div class="case-copy">
         <p class="work-tag">Amazon</p>
         <h2>Dormeo</h2>
@@ -225,7 +228,7 @@ src="https://www.facebook.com/tr?id=779041874461329&ev=PageView&noscript=1"
     </article>
 
     <article class="case-study reverse reveal-up" id="mam-baby">
-      <div class="case-media" style="background-image:url('assets/img/work/mam.jpg')" role="img" aria-label="MAM Baby premium borosilicate glass baby bottle product shot"></div>
+      <picture class="case-media"><source type="image/webp" srcset="assets/img/work/mam-600.webp 600w, assets/img/work/mam-900.webp 900w, assets/img/work/mam-1200.webp 1200w" sizes="(max-width:900px) calc(100vw - 2.5rem), 55vw"><img src="assets/img/work/mam-1200.jpg" alt="MAM Baby premium borosilicate glass baby bottle product shot" width="1200" height="742" loading="lazy" decoding="async"></picture>
       <div class="case-copy">
         <p class="work-tag">Amazon</p>
         <h2>MAM Baby</h2>
@@ -239,7 +242,7 @@ src="https://www.facebook.com/tr?id=779041874461329&ev=PageView&noscript=1"
     </article>
 
     <article class="case-study reveal-up" id="natures-answer">
-      <div class="case-media" style="background-image:url('assets/img/work/natures-answer.jpg')" role="img" aria-label="Nature's Answer Sambucus black elderberry supplement packaging"></div>
+      <picture class="case-media"><source type="image/webp" srcset="assets/img/work/natures-answer-600.webp 600w, assets/img/work/natures-answer-900.webp 900w, assets/img/work/natures-answer-1200.webp 1200w" sizes="(max-width:900px) calc(100vw - 2.5rem), 55vw"><img src="assets/img/work/natures-answer-1200.jpg" alt="Nature's Answer Sambucus black elderberry supplement packaging" width="1200" height="1200" loading="lazy" decoding="async"></picture>
       <div class="case-copy">
         <p class="work-tag">Amazon</p>
         <h2>Nature's Answer</h2>
@@ -270,7 +273,7 @@ src="https://www.facebook.com/tr?id=779041874461329&ev=PageView&noscript=1"
     </article>
 
     <article class="case-study reveal-up" id="hapad">
-      <div class="case-media" style="background-image:url('assets/img/work/hapad.jpg')" role="img" aria-label="Hapad Comf-Orthotic replacement insoles product lineup across four support styles"></div>
+      <picture class="case-media"><source type="image/webp" srcset="assets/img/work/hapad-600.webp 600w, assets/img/work/hapad-900.webp 900w, assets/img/work/hapad-1200.webp 1200w" sizes="(max-width:900px) calc(100vw - 2.5rem), 55vw"><img src="assets/img/work/hapad-1200.jpg" alt="Hapad Comf-Orthotic replacement insoles product lineup across four support styles" width="1200" height="600" loading="lazy" decoding="async"></picture>
       <div class="case-copy">
         <p class="work-tag">Amazon</p>
         <h2>Hapad</h2>
@@ -333,8 +336,6 @@ src="https://www.facebook.com/tr?id=779041874461329&ev=PageView&noscript=1"
   </div>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="js/main.js"></script>
+<script src="js/main.js?v=3" defer></script>
 </body>
 </html>
