@@ -484,6 +484,10 @@ section{
 .article-cta h3{font-size:var(--fs-h3);}
 .article-cta p{color:var(--muted-on-dark);}
 .article-back{display:inline-block;margin-top:2rem;font-weight:600;font-size:0.95rem;border-bottom:1px solid currentColor;padding-bottom:2px;}
+.related-reading{margin-top:2.5rem;padding-top:1.75rem;border-top:1px solid var(--line-light);max-width:700px;}
+.related-reading h4{font-size:0.85rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted-on-light);margin-bottom:0.9rem;}
+.related-reading a{display:block;font-weight:600;margin-bottom:0.6rem;}
+.related-reading a:hover{color:var(--accent);}
 
 @media (max-width:900px){
   .blog-grid{grid-template-columns:1fr;}
