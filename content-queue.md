@@ -17,7 +17,7 @@ Source: Joey Giazzon's LinkedIn content plan (Aug 31 – Oct 9, 2026 batch). Voi
 
 ---
 
-## STATUS: pending
+## STATUS: drafted
 ### Topic: Repeat purchase / Subscribe & Save / pack size laddering
 Suggested slug: amazon-repeat-purchase-strategy
 Suggested title direction: "Your Best Amazon Customer Is Already in Your Account"
@@ -50,7 +50,7 @@ What percentage of your revenue came from repeat buyers last quarter? Most selle
 
 ---
 
-## STATUS: pending
+## STATUS: drafted
 ### Topic: Q4 ad pacing — October/November/December budget sequencing
 Suggested slug: amazon-q4-ad-pacing-strategy
 Suggested title direction: "October Is the Cheapest Ad Month of Q4 — Most Brands Sit It Out"
@@ -85,7 +85,7 @@ Is your Q4 budget weighted toward the cheap month or the expensive one?
 
 ---
 
-## STATUS: pending
+## STATUS: drafted
 ### Topic: Reporting — ACoS vs TACoS, what a report should lead with
 Suggested slug: amazon-acos-vs-tacos-reporting
 Suggested title direction: "If Your Amazon Report Leads With ACoS, You're Being Managed to the Wrong Number"
@@ -122,7 +122,7 @@ Does your reporting tell you the truth, or tell you a story?
 
 ---
 
-## STATUS: pending
+## STATUS: drafted
 ### Topic: Launches — the "honeymoon period," narrow-launch strategy
 Suggested slug: amazon-product-launch-honeymoon-period
 Suggested title direction: "The Amazon Launch Honeymoon Period Is Real — Most Brands Waste It"
@@ -157,7 +157,7 @@ What is the single keyword your next launch has to own?
 
 ---
 
-## STATUS: pending
+## STATUS: drafted
 ### Topic: BFCM deadlines checklist
 Suggested slug: amazon-black-friday-cyber-monday-deadlines
 Suggested title direction: "The Black Friday Deadlines Most Amazon Sellers Find Out About Too Late"
@@ -188,7 +188,7 @@ What is the next Q4 deadline on your calendar, and do you know the date without 
 
 ---
 
-## STATUS: pending
+## STATUS: drafted
 ### Topic: Amazon DSP — when it's worth it, when it's a tax
 Suggested slug: amazon-dsp-when-its-worth-it
 Suggested title direction: "Amazon DSP Is the Most Oversold Product in This Industry"
@@ -219,7 +219,7 @@ Is your Sponsored Products account clean enough to justify anything fancier?
 
 ---
 
-## STATUS: pending
+## STATUS: drafted
 ### Topic: Founder story — BB-Bands / Team USA Baseball stockout lesson
 Suggested slug: what-a-stockout-taught-me-about-amazon
 Suggested title direction: "I Learned More From One Product Going Viral Than From Any Campaign I've Run"
@@ -254,7 +254,7 @@ What would break in your business tomorrow if demand tripled?
 
 ---
 
-## STATUS: pending
+## STATUS: drafted
 ### Topic: Retention philosophy — why client retention is the real strategy
 Suggested slug: why-amazon-agency-retention-matters
 Suggested title direction: "The Metric I Care About Most Isn't One We Report to Clients"
