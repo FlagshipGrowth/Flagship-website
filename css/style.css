@@ -115,7 +115,12 @@ section{
 }
 .hero-title{font-size:var(--fs-hero);}
 .hero-title .line{display:block;overflow:hidden;}
-.reveal-word{display:inline-block;transform:translateY(110%);}
+.reveal-word{display:inline-block;animation:revealWord .9s cubic-bezier(.165,.84,.44,1) .2s both;}
+.hero-title .line:nth-child(1) .reveal-word:nth-child(2){animation-delay:.26s;}
+.hero-title .line:nth-child(2) .reveal-word:nth-child(1){animation-delay:.32s;}
+.hero-title .line:nth-child(2) .reveal-word:nth-child(2){animation-delay:.38s;}
+.hero-title .line:nth-child(3) .reveal-word:nth-child(1){animation-delay:.44s;}
+@keyframes revealWord{from{transform:translateY(110%);}to{transform:none;}}
 .hero-sub{
   display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;
   margin-top:2.5rem;flex-wrap:wrap;
@@ -180,6 +185,8 @@ section{
   background-position:center;background-color:var(--paper-2);
   transition:transform .5s cubic-bezier(.16,1,.3,1);
 }
+.work-img,.case-media{display:block;overflow:hidden;}
+.work-img img,.case-media img{width:100%;height:100%;object-fit:contain;}
 .work-card{transition:transform .4s ease, box-shadow .4s ease;}
 .work-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px -20px rgba(11,13,18,0.35);}
 .work-meta{
@@ -493,8 +500,25 @@ section{
   .blog-grid{grid-template-columns:1fr;}
 }
 
-/* ===== Reveal animation base state ===== */
-.reveal-up{opacity:0;transform:translateY(24px);}
+/* ===== Reveal animations =====
+   Above-the-fold content (page heroes + the top of article bodies) animates
+   in with pure CSS so it paints immediately, without waiting on JavaScript.
+   Everything else fades up on scroll: main.js adds .is-visible via
+   IntersectionObserver. The hidden state is gated on html.js (set by an
+   inline script in <head>) so content stays visible if JS never runs. */
+:is(.hero,.page-hero,.article-hero) .reveal-up,.article-body.reveal-up{
+  animation:revealUp .8s cubic-bezier(.215,.61,.355,1) .15s both;
+}
+@keyframes revealUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:none;}}
+.js .reveal-up:not(:is(.hero,.page-hero,.article-hero) *):not(.article-body){
+  opacity:0;transform:translateY(24px);
+  transition:opacity .8s cubic-bezier(.215,.61,.355,1), transform .8s cubic-bezier(.215,.61,.355,1);
+}
+.js .reveal-up.is-visible:not(:is(.hero,.page-hero,.article-hero) *):not(.article-body){opacity:1;transform:none;}
+@media (prefers-reduced-motion:reduce){
+  .reveal-word,:is(.hero,.page-hero,.article-hero) .reveal-up,.article-body.reveal-up{animation:none;}
+  .js .reveal-up:not(:is(.hero,.page-hero,.article-hero) *):not(.article-body){opacity:1;transform:none;transition:none;}
+}
 
 /* ===== Responsive ===== */
 @media (max-width:900px){

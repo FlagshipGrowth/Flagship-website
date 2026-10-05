@@ -1,0 +1,23 @@
+# Cache headers. Netlify's default for static files is max-age=0 +
+# must-revalidate, which makes every repeat visit re-check every image/CSS/JS
+# file. HTML keeps that default so content changes show up immediately.
+#
+# CSS/JS are referenced with a ?v=N query string — bump it in every page
+# whenever style.css or main.js changes so returning visitors get the new file.
+# Images aren't versioned, so they get a shorter lifetime: if one is replaced
+# under the same filename, visitors pick it up within a week.
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000, stale-while-revalidate=86400"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000, stale-while-revalidate=86400"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, stale-while-revalidate=86400"
