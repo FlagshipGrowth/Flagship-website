@@ -32,10 +32,26 @@ src="https://www.facebook.com/tr?id=779041874461329&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
 
-<!-- TODO: Google Ads conversion tracking — add once the site is live and the
-     Google Ads conversion ID (format AW-XXXXXXXXX) is available. Insert the
-     standard gtag.js snippet here, then fire a conversion event alongside
-     the fbq('track','Lead') call in contact.html on successful form submit. -->
+<!-- Google tag (gtag.js) event - delayed navigation helper -->
+<script>
+  // Helper function to delay opening a URL until a gtag event is sent.
+  // Call it in response to an action that should navigate to a URL.
+  function gtagSendEvent(url) {
+    var callback = function () {
+      if (typeof url === 'string') {
+        window.location = url;
+      }
+    };
+    gtag('event', 'conversion_event_submit_lead_form', {
+      'event_callback': callback,
+      'event_timeout': 2000,
+      // <event_parameters>
+    });
+    return false;
+  }
+</script>
+<!-- TODO: add the Google Ads tag ID (AW-XXXXXXXXX) as a second destination in the Google tag
+     above — gtag('config','AW-XXXXXXXXX') — on every page. Until then this event only reaches GA4. -->
 <title>Book a Call — Flagship Growth</title>
 <meta name="description" content="Tell us about your brand and we'll get back to you within one business day — or book a time directly on our calendar.">
 
@@ -232,6 +248,18 @@ src="https://www.facebook.com/tr?id=779041874461329&ev=PageView&noscript=1"
 
 <script src="js/main.js?v=3" defer></script>
 <script>
+  // Captured once at page load (before any in-page navigation) so the organic-vs-paid signal
+  // reflects how this visitor actually arrived, not whatever the URL happens to be at submit time.
+  const urlParams = new URLSearchParams(window.location.search);
+  const attribution = {
+    utm_source: urlParams.get('utm_source') || '',
+    utm_medium: urlParams.get('utm_medium') || '',
+    utm_campaign: urlParams.get('utm_campaign') || '',
+    gclid: urlParams.get('gclid') || '',
+    fbclid: urlParams.get('fbclid') || '',
+    referrer: document.referrer || ''
+  };
+
   const leadForm = document.getElementById('leadForm');
   leadForm.addEventListener('submit', function(e){
     e.preventDefault();
@@ -253,19 +281,20 @@ src="https://www.facebook.com/tr?id=779041874461329&ev=PageView&noscript=1"
     fetch('https://flagship-insights-ai.netlify.app/api/leads/from-contact-form', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
+      body: JSON.stringify(Object.assign({
         name: leadForm.name.value,
         email: leadForm.email.value,
         company: leadForm.company.value,
         revenue: leadForm.revenue.value,
         note: leadForm.note.value,
         honey: leadForm._honey.value
-      })
+      }, attribution))
     }).then(function(response){
       if (response.ok) {
         document.getElementById('formFields').hidden = true;
         document.getElementById('formSuccess').hidden = false;
         if (typeof fbq === 'function') { fbq('track', 'Lead'); }
+        if (typeof gtag === 'function') { gtagSendEvent(); }
       } else {
         throw new Error('Form submission failed');
       }
