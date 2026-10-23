@@ -76,3 +76,77 @@ if('IntersectionObserver' in window){
 } else {
   revealEls.forEach(el => el.classList.add('is-visible'));
 }
+
+// ===== Hero brand reel: brands cut in and out, the analytics card follows the brand on screen =====
+(function(){
+  const reel = document.getElementById('heroReel');
+  if(!reel) return;
+  const shots = [...reel.querySelectorAll('.reel-shot')];
+  if(shots.length < 2) return;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const MS = reduce ? 4200 : 2400;
+  const CUTS = ['cut-punch','cut-wipe','cut-slide','cut-split'];
+  const $ = (id) => document.getElementById(id);
+  const ticks = $('reelTicks');
+  ticks.innerHTML = shots.map(() => '<span></span>').join('');
+  ticks.style.setProperty('--reel-ms', MS + 'ms');
+  const caption = reel.querySelector('.reel-caption');
+  const spark = reel.querySelector('.ri-spark');
+  let i = 0, timer = null, started = performance.now(), running = false;
+
+  // A rising, slightly bumpy line per brand (seeded by name so each brand keeps its shape).
+  function series(seed, n){
+    let h = 0; for(const c of seed) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+    const pts = []; let v = 0.15;
+    for(let k = 0; k < n; k++){ h = (h * 1103515245 + 12345) >>> 0; v += 0.05 + ((h % 1000) / 1000 - 0.35) * 0.09; pts.push(Math.min(0.95, Math.max(0.05, v))); }
+    return pts;
+  }
+  function drawSpark(seed){
+    const W = 240, H = 70, pts = series(seed, 12);
+    const xy = pts.map((p, k) => [k * (W / (pts.length - 1)), H - p * H]);
+    const d = xy.map((p, k) => (k ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' ');
+    $('riLine').setAttribute('d', d);
+    $('riArea').setAttribute('d', d + ` L${W} ${H} L0 ${H} Z`);
+    const last = xy[xy.length - 1]; $('riDot').setAttribute('cx', last[0]); $('riDot').setAttribute('cy', last[1]);
+    spark.classList.remove('draw'); void spark.getBoundingClientRect(); spark.classList.add('draw');
+    const s = series(seed + 'x', 3);
+    $('riBar1').style.width = (55 + s[0] * 45) + '%'; $('riBar2').style.width = (45 + s[1] * 50) + '%'; $('riBar3').style.width = (60 + s[2] * 40) + '%';
+  }
+  function retrigger(el, cls){ el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); }
+
+  function show(n, cut){
+    const prev = shots[i], next = shots[n];
+    if(prev !== next){
+      shots.forEach(s => s.classList.remove('is-leaving'));
+      prev.classList.remove('is-active', ...CUTS); prev.classList.add('is-leaving');
+      next.classList.remove(...CUTS);
+      if(cut && !reduce) next.classList.add(CUTS[Math.floor(Math.random() * CUTS.length)]);
+      void next.offsetWidth; next.classList.add('is-active');
+      if(cut && !reduce && Math.random() < 0.45) retrigger(reel.querySelector('.reel-flash'), 'go');
+    }
+    i = n;
+    const d = next.dataset;
+    $('reelBrand').textContent = d.brand; $('reelChannel').textContent = d.channel; retrigger(caption, 'swap');
+    $('riBrand').textContent = d.brand; $('riLabel').textContent = d.label; $('riValue').textContent = d.value; retrigger($('riValue'), 'swap');
+    drawSpark(d.brand);
+    [...ticks.children].forEach((t, k) => { t.className = k < n ? 'done' : ''; });
+    void ticks.offsetWidth; ticks.children[n].className = 'now';
+  }
+  function step(){ show((i + 1) % shots.length, true); }
+  function play(){ if(running) return; running = true; timer = setInterval(step, MS); }
+  function pause(){ running = false; clearInterval(timer); }
+
+  // Timecode, like a camera monitor.
+  (function tc(){
+    const t = (performance.now() - started) / 1000, f = Math.floor((t % 1) * 24);
+    const p = (x) => String(Math.floor(x)).padStart(2, '0');
+    $('reelTc').textContent = `${p(t / 3600)}:${p((t / 60) % 60)}:${p(t % 60)}:${p(f)}`;
+    requestAnimationFrame(tc);
+  })();
+
+  show(0, false);
+  if('IntersectionObserver' in window){
+    new IntersectionObserver((es) => es.forEach(e => e.isIntersecting ? play() : pause()), {threshold: 0.25}).observe(reel);
+  } else play();
+  document.addEventListener('visibilitychange', () => document.hidden ? pause() : play());
+})();
