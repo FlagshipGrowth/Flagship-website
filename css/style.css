@@ -520,6 +520,34 @@ section{
   .js .reveal-up:not(:is(.hero,.page-hero,.article-hero) *):not(.article-body){opacity:1;transform:none;transition:none;}
 }
 
+
+/* ===== Insights & Analytics button (client dashboard) ===== */
+.btn-insights{
+  position:relative;isolation:isolate;color:#fff;font-family:var(--font-display);letter-spacing:-0.01em;
+  background:linear-gradient(135deg,#0B1F4A 0%,#1A3AD6 55%,#2447FF 100%);
+  box-shadow:0 6px 18px -6px rgba(36,71,255,.55), inset 0 1px 0 rgba(255,255,255,.18);
+  border:none;transition:transform .25s ease, box-shadow .25s ease;
+}
+.btn-insights::before{ /* slow light travelling round the border */
+  content:'';position:absolute;inset:-1.5px;border-radius:inherit;z-index:-2;
+  background:conic-gradient(from var(--insights-angle,0deg),#2447FF,#9DB1FF,#D6FF3F,#2447FF 40%,#0B1F4A 60%,#2447FF);
+  animation:insights-spin 6s linear infinite;
+}
+.btn-insights::after{ /* fill above the moving border */
+  content:'';position:absolute;inset:1px;border-radius:inherit;z-index:-1;
+  background:linear-gradient(135deg,#0B1F4A 0%,#1A3AD6 60%,#2447FF 100%);
+}
+.btn-insights:hover{transform:translateY(-2px);box-shadow:0 12px 28px -8px rgba(36,71,255,.7), inset 0 1px 0 rgba(255,255,255,.22);}
+.insights-icon{position:relative;display:inline-grid;place-items:center;width:22px;height:22px;border-radius:7px;background:rgba(255,255,255,.14);}
+.insights-icon i{position:absolute;top:-2px;right:-2px;width:7px;height:7px;border-radius:50%;background:#D6FF3F;box-shadow:0 0 0 0 rgba(214,255,63,.7);animation:insights-ping 2s ease-out infinite;}
+.insights-arrow{display:inline-block;transition:transform .25s ease;opacity:.85;}
+.btn-insights:hover .insights-arrow{transform:translateX(3px);opacity:1;}
+.mobile-menu .btn-insights{font-size:1rem;}
+@property --insights-angle{syntax:'<angle>';inherits:false;initial-value:0deg;}
+@keyframes insights-spin{to{--insights-angle:360deg;}}
+@keyframes insights-ping{0%{box-shadow:0 0 0 0 rgba(214,255,63,.7);}100%{box-shadow:0 0 0 7px rgba(214,255,63,0);}}
+@media (prefers-reduced-motion:reduce){.btn-insights::before,.insights-icon i{animation:none;}}
+
 /* ===== Responsive ===== */
 @media (max-width:900px){
   .main-nav,.header-cta,.header-partner-login{display:none;}
