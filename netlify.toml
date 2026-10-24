@@ -21,3 +21,15 @@
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=604800, stale-while-revalidate=86400"
+
+# Security headers on every page: HTTPS only, no content sniffing, no framing by other sites, no referrer leakage, and no
+# camera, microphone or location access. HSTS deliberately has no includeSubDomains here, because other services live on
+# subdomains of this domain. (A Content-Security-Policy is a separate step: this site loads analytics and ad pixels.)
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Strict-Transport-Security = "max-age=31536000"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
