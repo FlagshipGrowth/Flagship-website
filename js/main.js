@@ -24,12 +24,16 @@ window.addEventListener('scroll', () => {
 const navToggle = document.getElementById('navToggle');
 const mobileMenu = document.getElementById('mobileMenu');
 if(navToggle){
-  navToggle.addEventListener('click', () => {
-    mobileMenu.classList.toggle('open');
-  });
+  const setMenu = (open) => {
+    mobileMenu.classList.toggle('open', open);
+    navToggle.setAttribute('aria-expanded', String(open));
+    navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Menu');
+  };
+  navToggle.addEventListener('click', () => setMenu(!mobileMenu.classList.contains('open')));
   mobileMenu.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    a.addEventListener('click', () => setMenu(false));
   });
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && mobileMenu.classList.contains('open')){ setMenu(false); navToggle.focus(); } });
 }
 
 // ===== Count-up stats =====
@@ -149,4 +153,59 @@ if('IntersectionObserver' in window){
     new IntersectionObserver((es) => es.forEach(e => e.isIntersecting ? play() : pause()), {threshold: 0.25}).observe(reel);
   } else play();
   document.addEventListener('visibilitychange', () => document.hidden ? pause() : play());
+})();
+
+
+// ===== Cookie consent =====
+// Google Analytics (Consent Mode v2) and the Meta Pixel start denied (see the inline script in each page's <head>).
+// The banner asks once; the choice is kept in localStorage and can be changed from "Your privacy choices" in the footer.
+// A browser Global Privacy Control signal counts as "reject" and can't be overridden by the banner.
+(function(){
+  const KEY = 'fg_consent';
+  const gpc = navigator.globalPrivacyControl === true;
+  const read = () => { try { return localStorage.getItem(KEY); } catch(e){ return null; } };
+  const apply = (granted) => {
+    const v = granted ? 'granted' : 'denied';
+    if(typeof window.gtag === 'function') window.gtag('consent', 'update', { ad_storage: v, ad_user_data: v, ad_personalization: v, analytics_storage: v });
+    if(typeof window.fbq === 'function') window.fbq('consent', granted ? 'grant' : 'revoke');
+  };
+  let lastFocus = null;
+  const banner = document.createElement('div');
+  banner.className = 'consent';
+  banner.setAttribute('role', 'dialog');
+  banner.setAttribute('aria-modal', 'false');
+  banner.setAttribute('aria-labelledby', 'consentTitle');
+  banner.setAttribute('aria-describedby', 'consentText');
+  banner.hidden = true;
+  const policy = (location.pathname.indexOf('/blog/') === 0 ? '../' : '') + 'privacy.html#cookies';
+  banner.innerHTML =
+    '<div class="consent-inner">' +
+      '<div>' +
+        '<h2 id="consentTitle" class="consent-title">Your privacy</h2>' +
+        '<p id="consentText">We use cookies for analytics (Google Analytics) and to measure our ads (Meta). They only turn on if you accept. ' +
+        (gpc ? 'Your browser is sending a Global Privacy Control signal, so we keep them off. ' : '') +
+        '<a href="' + policy + '">Cookie details</a></p>' +
+      '</div>' +
+      '<div class="consent-actions">' +
+        '<button type="button" class="btn btn-pill btn-outline-light" data-consent="denied">Reject non-essential</button>' +
+        (gpc ? '' : '<button type="button" class="btn btn-pill btn-accent" data-consent="granted">Accept all</button>') +
+      '</div>' +
+    '</div>';
+  const open = () => { lastFocus = document.activeElement; banner.hidden = false; const b = banner.querySelector('button'); if(b) b.focus(); };
+  const close = () => { banner.hidden = true; if(lastFocus && lastFocus.focus) lastFocus.focus(); };
+  banner.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-consent]');
+    if(!btn) return;
+    const granted = btn.getAttribute('data-consent') === 'granted' && !gpc;
+    try { localStorage.setItem(KEY, granted ? 'granted' : 'denied'); } catch(e){}
+    apply(granted);
+    close();
+  });
+  banner.addEventListener('keydown', (e) => { if(e.key === 'Escape' && read()) close(); });
+  const start = () => {
+    document.body.appendChild(banner);
+    if(!read()) open();
+    document.querySelectorAll('[data-open-consent]').forEach(b => b.addEventListener('click', open));
+  };
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
 })();
