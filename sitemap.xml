@@ -26,6 +26,18 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://flagshipgrowth.com/insights.html</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://flagshipgrowth.com/terms.html</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
     <loc>https://flagshipgrowth.com/privacy.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
