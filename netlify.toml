@@ -24,7 +24,13 @@
 
 # Security headers on every page: HTTPS only, no content sniffing, no framing by other sites, no referrer leakage, and no
 # camera, microphone or location access. HSTS deliberately has no includeSubDomains here, because other services live on
-# subdomains of this domain. (A Content-Security-Policy is a separate step: this site loads analytics and ad pixels.)
+# subdomains of this domain.
+#
+# Content-Security-Policy: only this site's own files, the six inline scripts below (allowed by their sha256 fingerprint:
+# consent defaults, the Google tag, the Meta Pixel, and the contact page's two form scripts), the Google Fonts onload
+# trick, and Google / Meta / Calendly can run. Anything injected is blocked; forms can only post to this site or
+# FormSubmit; nothing can frame the site. IF YOU EDIT ANY INLINE <script> (or add a new one), its hash changes and the
+# browser will block it: re-run the hash list (see the security PR) and update script-src below.
 [[headers]]
   for = "/*"
   [headers.values]
@@ -33,3 +39,24 @@
     X-Frame-Options = "SAMEORIGIN"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'sha256-/x7W7R75k8Roq0WaVRQX9blP4OufE5xbAdzklGxsgpw=' 'sha256-7NTFQflwBHG7IjlPuj5P4jeg0BujSNP74ZBFXajN+60=' 'sha256-JXoa7FISTq6u2QH7qObTHudJtvZigBWIq39/jhnZul0=' 'sha256-a2488anqgTdLqVj4bediRtL5hBuPAVDIto16gEBtMAQ=' 'sha256-aQpqIFJ6dKSQdfIRlBCuAjC7wPLzpkku8enpSAekTPI=' 'sha256-nxLKqqCbPuCgNjN6PW67yXIpIhgPcLSPdyljJhxsjxA=' 'unsafe-hashes' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc=' https://www.googletagmanager.com https://connect.facebook.net https://assets.calendly.com https://www.googleadservices.com https://googleads.g.doubleclick.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://assets.calendly.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://www.facebook.com https://connect.facebook.net https://formsubmit.co https://flagship-insights-ai.netlify.app https://www.google.com https://googleads.g.doubleclick.net https://*.doubleclick.net; frame-src https://calendly.com https://*.calendly.com https://www.facebook.com https://www.googletagmanager.com https://td.doubleclick.net; form-action 'self' https://formsubmit.co; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; upgrade-insecure-requests"
+    Cross-Origin-Opener-Policy = "same-origin-allow-popups"
+
+# Internal files that ship with the repo but aren't for visitors.
+# The blog-drafting routine reads content-queue.md from the repo, never from the website, so it can be blocked outright.
+[[redirects]]
+  from = "/content-queue.md"
+  to = "/404.html"
+  status = 404
+  force = true
+
+# Ad drafts and the brand guidelines stay reachable by direct link (they may be shared) but never show up in search.
+[[headers]]
+  for = "/assets/drop-x9k2m7/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow, noarchive"
+
+[[headers]]
+  for = "/brand-guidelines.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow, noarchive"
