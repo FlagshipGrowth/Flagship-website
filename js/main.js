@@ -209,3 +209,44 @@ if('IntersectionObserver' in window){
   };
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
 })();
+
+// ===== Article "On this page" list =====
+// Builds a numbered list from the article's h2s and highlights the section
+// being read. Shown beside the text on wide screens only (CSS).
+(() => {
+  const article = document.querySelector('main > article');
+  const body = article && article.querySelector('.article-body');
+  if(!body) return;
+  const heads = [...body.querySelectorAll('h2')];
+  if(heads.length < 2) return;
+  const slug = (t) => t.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  const nav = document.createElement('nav');
+  nav.className = 'article-toc';
+  nav.setAttribute('aria-label', 'On this page');
+  const title = document.createElement('h4');
+  title.textContent = 'On this page';
+  const list = document.createElement('ol');
+  const links = heads.map((h, i) => {
+    if(!h.id) h.id = slug(h.textContent) || 'section-' + (i + 1);
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.href = '#' + h.id;
+    a.textContent = h.textContent;
+    li.appendChild(a);
+    list.appendChild(li);
+    return a;
+  });
+  nav.append(title, list);
+  body.after(nav);
+  const setActive = (id) => links.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === '#' + id));
+  if('IntersectionObserver' in window){
+    const seen = new Set();
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => e.isIntersecting ? seen.add(e.target.id) : seen.delete(e.target.id));
+      const first = heads.find(h => seen.has(h.id));
+      if(first) setActive(first.id);
+    }, {rootMargin: '-80px 0px -60% 0px'});
+    heads.forEach(h => io.observe(h));
+  }
+  setActive(heads[0].id);
+})();
