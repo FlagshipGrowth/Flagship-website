@@ -494,7 +494,8 @@ section{
 
 /* ===== About page ===== */
 .about-block{display:flex;flex-direction:column;gap:clamp(2.5rem,5vw,3.75rem);}
-.about-block > h2{font-size:var(--fs-h2);font-weight:500;letter-spacing:-0.02em;}
+.about-block-top{padding-top:calc(clamp(4rem,8vw,7rem) + 4rem);}
+.about-block > h1,.about-block > h2{font-size:var(--fs-h2);font-weight:500;letter-spacing:-0.02em;}
 .about-item{display:flex;flex-direction:column;gap:1.25rem;max-width:980px;}
 .about-item::before{content:'';display:block;width:130px;height:10px;background:var(--ink);margin-bottom:0.75rem;}
 .about-item h3{font-family:var(--font-display);font-size:clamp(1.4rem,2.2vw,1.75rem);font-weight:500;letter-spacing:-0.01em;}
