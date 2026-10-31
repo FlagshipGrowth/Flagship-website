@@ -281,3 +281,14 @@ if('IntersectionObserver' in window){
   document.addEventListener('visibilitychange', () => { if(document.hidden) clearTimeout(timer); else schedule(); });
   schedule();
 })();
+
+// ===== Open a <details> when a link points at it =====
+(() => {
+  const openTarget = () => {
+    const id = decodeURIComponent(location.hash.slice(1));
+    const el = id && document.getElementById(id);
+    if(el && el.tagName === 'DETAILS') el.open = true;
+  };
+  window.addEventListener('hashchange', openTarget);
+  openTarget();
+})();
