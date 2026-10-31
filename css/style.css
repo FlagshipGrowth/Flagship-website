@@ -128,7 +128,8 @@ section{
   display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;
   margin-top:2.5rem;flex-wrap:wrap;
 }
-.hero-sub p{max-width:460px;font-size:1.05rem;color:var(--muted-on-light);}
+.hero-sub p{max-width:480px;font-size:1.15rem;line-height:1.55;color:var(--muted-on-light);}
+.hero-sub p strong{color:var(--ink);font-weight:600;}
 .hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;}
 
 .hero-stats{
