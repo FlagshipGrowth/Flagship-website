@@ -943,3 +943,17 @@ main > article > .article-hero{
   .cs-slide.is-active{animation:none;}
   .cs-dot.is-active i::after{animation:none;transform:none;}
 }
+
+/* ===== What is included (Services) ===== */
+.included-section .eyebrow{color:var(--accent);margin-bottom:1rem;}
+.included-section h2{font-size:var(--fs-h2);letter-spacing:-0.02em;margin-bottom:clamp(2rem,4vw,3rem);}
+.inc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(2rem,5vw,4rem);}
+.inc-item{display:grid;grid-template-columns:3rem minmax(0,1fr);padding:2rem 0 2.25rem;border-top:1px solid var(--line-light);}
+.inc-num{font-family:var(--font-display);font-weight:600;font-size:0.9rem;color:var(--accent);padding-top:0.35rem;}
+.inc-item h3{font-size:clamp(1.25rem,1.8vw,1.5rem);letter-spacing:-0.01em;margin-bottom:1rem;}
+.inc-item ul{list-style:none;display:flex;flex-direction:column;gap:0.75rem;}
+.inc-item li{position:relative;padding-left:1.2rem;color:var(--muted-on-light);font-size:0.97rem;line-height:1.55;}
+.inc-item li::before{content:'';position:absolute;left:0;top:0.62em;width:6px;height:6px;border-radius:50%;background:var(--accent);}
+.inc-item p{color:var(--muted-on-light);font-size:0.97rem;line-height:1.65;}
+.inc-item a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;}
+@media (max-width:900px){.inc-grid{grid-template-columns:1fr;}}
