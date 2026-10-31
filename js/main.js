@@ -250,3 +250,34 @@ if('IntersectionObserver' in window){
   }
   setActive(heads[0].id);
 })();
+
+// ===== Hero case-study carousel =====
+(() => {
+  const root = document.getElementById('caseReel');
+  if(!root) return;
+  const slides = [...root.querySelectorAll('.cs-slide')];
+  const dots = [...root.querySelectorAll('.cs-dot')];
+  if(slides.length < 2) return;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const MS = 7000;
+  root.style.setProperty('--cs-ms', MS + 'ms');
+  let i = 0, timer = null, paused = false;
+  const show = (n) => {
+    i = (n + slides.length) % slides.length;
+    slides.forEach((s, k) => { const on = k === i; s.hidden = !on; s.classList.toggle('is-active', on); });
+    dots.forEach((d, k) => {
+      const on = k === i; d.setAttribute('aria-selected', String(on));
+      d.classList.remove('is-active'); if(on){ void d.offsetWidth; d.classList.add('is-active'); }
+    });
+  };
+  const schedule = () => { clearTimeout(timer); if(!reduce && !paused) timer = setTimeout(() => { show(i + 1); schedule(); }, MS); };
+  dots.forEach((d, k) => d.addEventListener('click', () => { show(k); schedule(); }));
+  root.querySelectorAll('.cs-arrow').forEach(b => b.addEventListener('click', () => { show(i + Number(b.dataset.dir)); schedule(); }));
+  const pause = (on) => { paused = on; root.classList.toggle('is-paused', on); if(on) clearTimeout(timer); else schedule(); };
+  root.addEventListener('mouseenter', () => pause(true));
+  root.addEventListener('mouseleave', () => pause(false));
+  root.addEventListener('focusin', () => pause(true));
+  root.addEventListener('focusout', (e) => { if(!root.contains(e.relatedTarget)) pause(false); });
+  document.addEventListener('visibilitychange', () => { if(document.hidden) clearTimeout(timer); else schedule(); });
+  schedule();
+})();
