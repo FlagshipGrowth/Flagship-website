@@ -137,7 +137,7 @@ fbq('track', 'PageView');
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"></noscript>
 <link rel="icon" type="image/svg+xml" href="assets/brand/mark.svg">
 <link rel="icon" type="image/png" href="assets/brand/favicon-32.png">
-<link rel="stylesheet" href="css/style.css?v=11">
+<link rel="stylesheet" href="css/style.css?v=12">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -255,18 +255,55 @@ fbq('track', 'PageView');
   </section>
 
   <!-- CORE SERVICES -->
-  <section class="core-services-section">
+  <section class="core-services-section" aria-labelledby="core-h">
+    <div class="core-head">
+      <p class="eyebrow reveal-up">Core services</p>
+      <h2 id="core-h" class="reveal-up">You build the brand. <span class="accent-text">We grow it on every shelf.</span></h2>
+    </div>
     <div class="core-services-grid">
-      <div class="core-service-card reveal-up">
-        <span class="service-index">01</span>
+
+      <article class="core-card core-card-dark reveal-up">
+        <div class="core-card-top">
+          <span class="service-index">01</span>
+          <span class="core-tag">Most brands start here</span>
+        </div>
         <h3>Full Account Management</h3>
-        <p>End-to-end management across Amazon, TikTok Shop, and Walmart — strategy, PPC, inventory, and account health, run by senior operators instead of a rotating cast of juniors.</p>
-      </div>
-      <div class="core-service-card reveal-up">
-        <span class="service-index">02</span>
-        <h3>Creative Services</h3>
-        <p>Main images, infographics, Premium A+, and brand stores built to convert — the same Amazon content behind every case study on our <a href="work.html">Work page</a>.</p>
-      </div>
+        <p class="core-pitch">Your Amazon, Walmart and TikTok Shop accounts, run by senior operators who treat your P&amp;L like their own. No junior handoffs, no six-agency juggling.</p>
+        <ul class="core-list">
+          <li><b>Growth plan and forecasting</b> built around your margin, not just revenue</li>
+          <li><b>Ads that pay for themselves:</b> Amazon PPC, Walmart Connect and TikTok GMV Max</li>
+          <li><b>Listings, catalog and SEO</b> kept clean and ranking</li>
+          <li><b>Inventory and account health</b> watched so you never lose the Buy Box to a stockout</li>
+          <li><b>Live reporting</b> in Flagship Insights, so you always know where you stand</li>
+        </ul>
+        <div class="core-proof">
+          <div><span>+89%</span>Opopop revenue, year over year</div>
+          <div><span>10% &rarr; 23%</span>Hapad conversion rate</div>
+        </div>
+        <a href="contact.html" class="btn btn-pill btn-accent core-cta">Get your free audit &rarr;</a>
+      </article>
+
+      <article class="core-card reveal-up">
+        <picture class="core-media"><source type="image/webp" srcset="assets/img/work/opopop-600.webp 600w, assets/img/work/opopop-900.webp 900w" sizes="(max-width:900px) 100vw, 45vw"><img src="assets/img/work/opopop-1200.jpg" alt="Opopop Amazon creative built by Flagship" width="1200" height="600" loading="lazy" decoding="async"></picture>
+        <div class="core-card-body">
+          <div class="core-card-top">
+            <span class="service-index">02</span>
+            <span class="core-tag core-tag-light">Add-on or standalone</span>
+          </div>
+          <h3>Creative Services</h3>
+          <p class="core-pitch">The images and pages shoppers decide on. Built to win the click, answer the objection and close the sale.</p>
+          <ul class="core-list">
+            <li><b>Main images</b> A/B tested against alternatives</li>
+            <li><b>Infographics and Premium A+</b> that answer questions before they&rsquo;re asked</li>
+            <li><b>Brand Stores and listing video</b></li>
+          </ul>
+          <div class="core-proof">
+            <div><span>+25%</span>Opopop units from search after a main image test</div>
+          </div>
+          <a href="work.html" class="link-arrow core-link">See the creative in our work &rarr;</a>
+        </div>
+      </article>
+
     </div>
   </section>
 
