@@ -50,13 +50,21 @@ section{
 /* ===== Header ===== */
 .site-header{
   position:fixed;top:0;left:0;right:0;z-index:100;
-  background:rgba(246,243,236,0.85);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid var(--line-light);
-  transform:translateY(0);
-  transition:transform .35s ease, background .3s ease;
+  background:transparent;
+  border-bottom:1px solid transparent;
+  transition:background .3s ease, border-color .3s ease, box-shadow .3s ease, backdrop-filter .3s ease;
 }
-.site-header.hide{transform:translateY(-100%);}
+/* once the page scrolls, the header turns to frosted glass: content shows through, links stay readable */
+.site-header.is-scrolled{
+  background:rgba(246,243,236,0.55);
+  -webkit-backdrop-filter:blur(16px) saturate(160%);
+          backdrop-filter:blur(16px) saturate(160%);
+  border-bottom-color:rgba(11,13,18,0.08);
+  box-shadow:0 8px 24px -18px rgba(11,13,18,0.35);
+}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .site-header.is-scrolled{background:rgba(246,243,236,0.94);}
+}
 .header-inner{
   max-width:var(--container);margin:0 auto;
   display:flex;align-items:center;justify-content:space-between;
