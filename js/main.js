@@ -7,18 +7,11 @@ function updateProgress(){
 }
 window.addEventListener('scroll', updateProgress, {passive:true});
 
-// ===== Header hide/reveal on scroll =====
+// ===== Sticky header: always visible, turns to frosted glass once the page scrolls =====
 const header = document.getElementById('siteHeader');
-let lastScroll = 0;
-window.addEventListener('scroll', () => {
-  const current = window.scrollY;
-  if(current > lastScroll && current > 120){
-    header.classList.add('hide');
-  } else {
-    header.classList.remove('hide');
-  }
-  lastScroll = current;
-}, {passive:true});
+const setHeader = () => { if(header) header.classList.toggle('is-scrolled', window.scrollY > 8); };
+window.addEventListener('scroll', setHeader, {passive:true});
+setHeader();
 
 // ===== Mobile menu =====
 const navToggle = document.getElementById('navToggle');
