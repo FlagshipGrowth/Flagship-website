@@ -1073,4 +1073,5 @@ main > article > .article-hero{
 .pricing-foot .pricing-label{margin-bottom:0.6rem;}
 .pricing-chips{list-style:none;display:flex;flex-wrap:wrap;gap:0.5rem;}
 .pricing-chips li{font-size:0.88rem;padding:0.4rem 0.8rem;border-radius:999px;border:1px solid var(--line-light);background:var(--paper-2);}
-@media (max-width:860px){.pricing-paths{grid-template-columns:1fr;}}
+.path-card-wide ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0.75rem 2.5rem;}
+@media (max-width:860px){.pricing-paths,.path-card-wide ul{grid-template-columns:1fr;}}
