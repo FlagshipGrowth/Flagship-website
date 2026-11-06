@@ -993,3 +993,24 @@ main > article > .article-hero{
   .hero-scene img{height:300px;max-height:none;object-position:22% top;}
   .hero-scene + .case-reel{margin-top:-1.5rem;}
 }
+
+/* ===== Digital Shelf page: shelf scene behind the header ===== */
+.page-hero--shelf{position:relative;isolation:isolate;padding-bottom:clamp(3rem,6vw,5rem);}
+.page-hero--shelf::before{
+  content:'';position:absolute;z-index:-1;top:0;bottom:0;left:calc(50% - 50vw);width:100vw;
+  background:
+    linear-gradient(90deg,var(--paper) 0%,var(--paper) 30%,rgba(246,243,236,.82) 52%,rgba(246,243,236,.25) 78%,rgba(246,243,236,.1) 100%),
+    linear-gradient(180deg,var(--paper) 0%,rgba(246,243,236,0) 22%,rgba(246,243,236,0) 70%,var(--paper) 100%),
+    url("../assets/img/hero/shelf-scene.jpg") right center / cover no-repeat;
+  background:
+    linear-gradient(90deg,var(--paper) 0%,var(--paper) 30%,rgba(246,243,236,.82) 52%,rgba(246,243,236,.25) 78%,rgba(246,243,236,.1) 100%),
+    linear-gradient(180deg,var(--paper) 0%,rgba(246,243,236,0) 22%,rgba(246,243,236,0) 70%,var(--paper) 100%),
+    image-set(url("../assets/img/hero/shelf-scene.webp") type("image/webp"),url("../assets/img/hero/shelf-scene.jpg") type("image/jpeg")) right center / cover no-repeat;
+}
+@media (max-width:700px){
+  .page-hero--shelf::before{
+    background:
+      linear-gradient(180deg,rgba(246,243,236,.78) 0%,rgba(246,243,236,.9) 55%,var(--paper) 100%),
+      url("../assets/img/hero/shelf-scene.jpg") 30% center / cover no-repeat;
+  }
+}
