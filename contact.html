@@ -110,7 +110,7 @@ fbq('track', 'PageView');
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"></noscript>
 <link rel="icon" type="image/svg+xml" href="assets/brand/mark.svg">
 <link rel="icon" type="image/png" href="assets/brand/favicon-32.png">
-<link rel="stylesheet" href="css/style.css?v=27">
+<link rel="stylesheet" href="css/style.css?v=28">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -146,9 +146,10 @@ fbq('track', 'PageView');
 <main id="main">
 
   <section class="contact-hero">
-    <p class="eyebrow reveal-up">Let's talk growth</p>
-    <h1 class="reveal-up">Tell us about<br>your <span class="accent-text">brand.</span></h1>
-    <p class="contact-sub reveal-up">Fill this out and a senior strategist will get back to you within one business day — no forms, no auto-dialers, no spam.</p>
+    <p class="eyebrow reveal-up">Free Growth Audit</p>
+    <h1 class="reveal-up">Get your Free<br>Growth <span class="accent-text">Audit.</span></h1>
+    <p class="contact-sub reveal-up">A full review of your ads, creative, listings and account health, and a 30-60-90 day plan with the fixes ranked by what they&rsquo;re worth. A senior strategist replies within one business day. No auto-dialers, no spam, no lock-in pitch.</p>
+    <p class="contact-book reveal-up">Ready to talk now? <a href="#book">Book a 30-min call &darr;</a></p>
   </section>
 
   <section class="contact-section">
@@ -171,6 +172,8 @@ fbq('track', 'PageView');
           <input type="hidden" name="_captcha" value="false">
           <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
 
+          <p class="form-note">All fields are required.</p>
+
           <div class="field">
             <label for="name">Full name</label>
             <input type="text" id="name" name="name" required autocomplete="name">
@@ -184,6 +187,11 @@ fbq('track', 'PageView');
           <div class="field">
             <label for="company">Company</label>
             <input type="text" id="company" name="company" required autocomplete="organization">
+          </div>
+
+          <div class="field">
+            <label for="website">Brand website or Amazon store link</label>
+            <input type="text" id="website" name="website" required inputmode="url" autocomplete="url" placeholder="yourbrand.com or amazon.com/stores/...">
           </div>
 
           <div class="field">
@@ -203,7 +211,7 @@ fbq('track', 'PageView');
             <textarea id="note" name="note" rows="4" placeholder="A few sentences on your brand, channels, and biggest bottleneck right now." required></textarea>
           </div>
 
-          <button type="submit" class="btn btn-pill btn-accent">Send it →</button>
+          <button type="submit" class="btn btn-pill btn-accent">Get my Free Growth Audit</button>
         </div>
       </form>
 
@@ -216,6 +224,17 @@ fbq('track', 'PageView');
             <li><span>03</span>If it's a fit, we scope a plan — no pressure, no lock-in pitch.</li>
           </ul>
         </div>
+        <div class="side-block side-proof">
+          <div class="side-badges">
+            <picture><source type="image/webp" srcset="assets/brand/amazon-spn-badge.webp"><img src="assets/brand/amazon-spn-badge.png" alt="Amazon SPN Verified Partner" width="700" height="534" loading="lazy" decoding="async"></picture>
+            <picture><source type="image/webp" srcset="assets/brand/tiktok-shop-certified-badge.webp"><img src="assets/brand/tiktok-shop-certified-badge.png" alt="TikTok Shop Certified Agency" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+          </div>
+          <p class="side-trust">Trusted by <b>Opopop, Hapad, Ramen Bae, VERB</b> and 200+ brands.</p>
+          <blockquote class="side-quote">
+            <p>&ldquo;Flagship is the best agency we work with without a doubt — always appreciate how detail oriented and thorough you guys are.&rdquo;</p>
+            <cite>Matt Houghton, CEO, VERB Energy Bars</cite>
+          </blockquote>
+        </div>
       </div>
 
     </div>
@@ -223,7 +242,7 @@ fbq('track', 'PageView');
 
   <section class="calendly-section" id="book">
     <div class="section-head">
-      <h2 class="reveal-up">Prefer to pick a time yourself?</h2>
+      <h2 class="reveal-up">Book a 30-min call</h2>
       <p class="structure-sub reveal-up">Skip the form and grab 30 minutes directly on our calendar.</p>
     </div>
     <div class="calendly-inline-widget" data-url="https://calendly.com/joey-flagshipgrowth/30min?hide_gdpr_banner=1" style="min-width:320px;height:750px;"></div>
@@ -334,7 +353,8 @@ fbq('track', 'PageView');
         email: leadForm.email.value,
         company: leadForm.company.value,
         revenue: leadForm.revenue.value,
-        note: leadForm.note.value,
+        website: leadForm.website.value,
+        note: (leadForm.website.value ? 'Brand link: ' + leadForm.website.value + '\n\n' : '') + leadForm.note.value,
         honey: leadForm._honey.value
       }, attribution))
     }).then(function(response){
@@ -349,7 +369,7 @@ fbq('track', 'PageView');
     }).catch(function(){
       document.getElementById('formError').hidden = false;
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Send it →';
+      submitBtn.textContent = 'Get my Free Growth Audit';
     });
   });
 
