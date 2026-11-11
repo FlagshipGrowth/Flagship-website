@@ -313,7 +313,7 @@ fbq('track', 'PageView');
   </div>
 </footer>
 
-<script src="js/main.js?v=11" defer></script>
+<script src="js/main.js?v=12" defer></script>
 <script>
   // Captured once at page load (before any in-page navigation) so the organic-vs-paid signal
   // reflects how this visitor actually arrived, not whatever the URL happens to be at submit time.
@@ -361,8 +361,11 @@ fbq('track', 'PageView');
       if (response.ok) {
         document.getElementById('formFields').hidden = true;
         document.getElementById('formSuccess').hidden = false;
-        if (typeof fbq === 'function') { fbq('track', 'Lead'); }
-        if (typeof gtag === 'function') { gtagSendEvent(); }
+        if (typeof fbq === 'function') { fbq('track', 'Lead', { content_name: 'Free Growth Audit' }); }
+        if (typeof gtag === 'function') {
+          gtagSendEvent();
+          gtag('event', 'generate_lead', { form_name: 'free_growth_audit', revenue_band: leadForm.revenue.value });
+        }
       } else {
         throw new Error('Form submission failed');
       }
@@ -377,6 +380,7 @@ fbq('track', 'PageView');
     if (e.origin !== 'https://calendly.com') return;
     if (e.data && e.data.event === 'calendly.event_scheduled') {
       if (typeof fbq === 'function') { fbq('track', 'Schedule'); }
+      if (typeof gtag === 'function') { gtag('event', 'book_call', { method: 'calendly' }); }
     }
   });
 </script>
