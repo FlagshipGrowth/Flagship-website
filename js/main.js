@@ -52,7 +52,15 @@ const countObserver = new IntersectionObserver((entries) => {
   });
 }, {threshold:0.4});
 
-document.querySelectorAll('[data-count]').forEach(el => countObserver.observe(el));
+// The real number is in the HTML (search engines and link previews read it); reset to 0 only when animating.
+const reduceCount = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.querySelectorAll('[data-count]').forEach(el => {
+  if(reduceCount) return;
+  const r = el.getBoundingClientRect();
+  if(r.top < window.innerHeight && r.bottom > 0) return; // already on screen: keep the real value
+  el.textContent = '0';
+  countObserver.observe(el);
+});
 
 // ===== Scroll reveals =====
 // Hero content animates with pure CSS (see style.css). Everything else with
