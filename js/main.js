@@ -293,3 +293,31 @@ if('IntersectionObserver' in window){
   window.addEventListener('hashchange', openTarget);
   openTarget();
 })();
+
+// ===== Conversion tracking: which button and which page start each lead =====
+// GA4 events (sent only within the visitor's consent choice, via Consent Mode):
+//   cta_click   any link to the contact page; cta_type audit | book, cta_location = section it sits in
+//   generate_lead / book_call  fired from contact.html on a sent form / a Calendly booking
+(() => {
+  const track = (name, params) => { if(typeof window.gtag === 'function') window.gtag('event', name, params || {}); };
+  window.fgTrack = track;
+  const where = (el) => {
+    if(el.closest('.site-header, .mobile-menu')) return 'header';
+    if(el.closest('footer')) return 'footer';
+    const sec = el.closest('section[id], section[class]');
+    if(!sec) return 'page';
+    return sec.id || sec.className.split(' ')[0];
+  };
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href]');
+    if(!a) return;
+    const href = a.getAttribute('href');
+    if(!/contact(\.html)?(#|$|\?)/.test(href) && href !== '#book') return;
+    track('cta_click', {
+      cta_type: /#book/.test(href) ? 'book' : 'audit',
+      cta_text: (a.textContent || '').trim().slice(0, 60),
+      cta_location: where(a),
+      page_path: location.pathname
+    });
+  });
+})();
