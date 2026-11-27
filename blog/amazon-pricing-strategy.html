@@ -6,16 +6,22 @@
 <script>document.documentElement.classList.add('js');</script>
 
 <!-- Google tag (gtag.js) -->
-<!-- Consent: Google Consent Mode v2 + Meta Pixel stay off until the visitor accepts (js/main.js shows the banner).
-     A browser Global Privacy Control signal is treated as "reject". -->
+<!-- Consent: in the US and most of the world, Google Analytics and the Meta Pixel are on by default and visitors can opt out
+     from "Your privacy choices" (js/main.js). Visitors in Europe (EEA, UK, Switzerland; detected by Google's region and
+     the browser's time zone) get the banner and nothing turns on until they accept. A Global Privacy Control signal or an
+     earlier "Reject" always keeps them off. -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   (function(){
     var c = null; try { c = localStorage.getItem('fg_consent'); } catch (e) {}
-    var ok = c === 'granted' && navigator.globalPrivacyControl !== true;
+    var tz = ''; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+    var optIn = /^Europe\//.test(tz);
+    var ok = navigator.globalPrivacyControl !== true && (c === 'granted' || (c !== 'denied' && !optIn));
+    window.__fgOptInRegion = optIn;
     window.__fgConsent = ok;
     var v = ok ? 'granted' : 'denied';
+    if (c !== 'granted') gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied', region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IS','IE','IT','LV','LI','LT','LU','MT','NL','NO','PL','PT','RO','SK','SI','ES','SE','GB','CH'], wait_for_update: 500 });
     gtag('consent', 'default', { ad_storage: v, ad_user_data: v, ad_personalization: v, analytics_storage: v, wait_for_update: 500 });
   })();
 </script>
@@ -212,7 +218,7 @@ fbq('track', 'PageView');
         <div>
           <h3>Services</h3>
           <ul>
-            <li><a href="../services.html">Amazon account management</a></li>
+            <li><a href="../amazon-account-management.html">Amazon account management</a></li>
             <li><a href="../services.html">Amazon &amp; Meta advertising</a></li>
             <li><a href="../services.html">Creative services</a></li>
             <li><a href="../services.html">TikTok Shop</a></li>
@@ -243,6 +249,6 @@ fbq('track', 'PageView');
   </div>
 </footer>
 
-<script src="../js/main.js?v=12" defer></script>
+<script src="../js/main.js?v=13" defer></script>
 </body>
 </html>

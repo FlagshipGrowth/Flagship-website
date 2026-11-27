@@ -158,9 +158,10 @@ if('IntersectionObserver' in window){
 
 
 // ===== Cookie consent =====
-// Google Analytics (Consent Mode v2) and the Meta Pixel start denied (see the inline script in each page's <head>).
-// The banner asks once; the choice is kept in localStorage and can be changed from "Your privacy choices" in the footer.
-// A browser Global Privacy Control signal counts as "reject" and can't be overridden by the banner.
+// The inline script in each page's <head> sets the defaults: Google Analytics (Consent Mode v2) and the Meta Pixel are on
+// for visitors outside Europe (opt-out from "Your privacy choices" in the footer) and off for visitors in Europe until
+// they accept. Only European visitors get the banner on their first visit; everyone can open it from the footer.
+// The choice is kept in localStorage. A browser Global Privacy Control signal counts as "reject" and can't be overridden.
 (function(){
   const KEY = 'fg_consent';
   const gpc = navigator.globalPrivacyControl === true;
@@ -183,7 +184,8 @@ if('IntersectionObserver' in window){
     '<div class="consent-inner">' +
       '<div>' +
         '<h2 id="consentTitle" class="consent-title">Your privacy</h2>' +
-        '<p id="consentText">We use cookies for analytics (Google Analytics) and to measure our ads (Meta). They only turn on if you accept. ' +
+        '<p id="consentText">We use cookies for analytics (Google Analytics) and to measure our ads (Meta). ' +
+        (window.__fgOptInRegion ? 'They only turn on if you accept. ' : 'You can turn them off here at any time. ') +
         (gpc ? 'Your browser is sending a Global Privacy Control signal, so we keep them off. ' : '') +
         '<a href="' + policy + '">Cookie details</a></p>' +
       '</div>' +
@@ -205,7 +207,7 @@ if('IntersectionObserver' in window){
   banner.addEventListener('keydown', (e) => { if(e.key === 'Escape' && read()) close(); });
   const start = () => {
     document.body.appendChild(banner);
-    if(!read()) open();
+    if(!read() && window.__fgOptInRegion) open();
     document.querySelectorAll('[data-open-consent]').forEach(b => b.addEventListener('click', open));
   };
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();

@@ -6,16 +6,22 @@
 <script>document.documentElement.classList.add('js');</script>
 
 <!-- Google tag (gtag.js) -->
-<!-- Consent: Google Consent Mode v2 + Meta Pixel stay off until the visitor accepts (js/main.js shows the banner).
-     A browser Global Privacy Control signal is treated as "reject". -->
+<!-- Consent: in the US and most of the world, Google Analytics and the Meta Pixel are on by default and visitors can opt out
+     from "Your privacy choices" (js/main.js). Visitors in Europe (EEA, UK, Switzerland; detected by Google's region and
+     the browser's time zone) get the banner and nothing turns on until they accept. A Global Privacy Control signal or an
+     earlier "Reject" always keeps them off. -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   (function(){
     var c = null; try { c = localStorage.getItem('fg_consent'); } catch (e) {}
-    var ok = c === 'granted' && navigator.globalPrivacyControl !== true;
+    var tz = ''; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+    var optIn = /^Europe\//.test(tz);
+    var ok = navigator.globalPrivacyControl !== true && (c === 'granted' || (c !== 'denied' && !optIn));
+    window.__fgOptInRegion = optIn;
     window.__fgConsent = ok;
     var v = ok ? 'granted' : 'denied';
+    if (c !== 'granted') gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied', region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IS','IE','IT','LV','LI','LT','LU','MT','NL','NO','PL','PT','RO','SK','SI','ES','SE','GB','CH'], wait_for_update: 500 });
     gtag('consent', 'default', { ad_storage: v, ad_user_data: v, ad_personalization: v, analytics_storage: v, wait_for_update: 500 });
   })();
 </script>
@@ -109,7 +115,7 @@ fbq('track', 'PageView');
   <section class="page-hero">
     <p class="eyebrow reveal-up">Legal</p>
     <h1 class="reveal-up">Privacy <span class="accent-text">Policy.</span></h1>
-    <p class="page-hero-sub reveal-up">Last updated October 26, 2026.</p>
+    <p class="page-hero-sub reveal-up">Last updated November 27, 2026.</p>
   </section>
 
   <section class="article-body reveal-up" style="padding-bottom:5rem;">
@@ -122,18 +128,19 @@ fbq('track', 'PageView');
 
     <h2 id="cookies">Cookies and tracking technologies</h2>
     <p><strong>Strictly necessary.</strong> The Site works without any cookies. We store one small value in your browser (<code>fg_consent</code>, in local storage) to remember your cookie choice, so we don't ask again on every page.</p>
-    <p><strong>Analytics and advertising (optional, off until you accept).</strong> If you click <em>Accept all</em> in our cookie banner, we turn on:</p>
+    <p><strong>Analytics and advertising (optional).</strong> We use:</p>
     <ul>
       <li><strong>Google Analytics (GA4)</strong> — website usage and traffic analytics. Cookies such as <code>_ga</code> and <code>_ga_*</code>, kept up to 2 years.</li>
       <li><strong>Meta Pixel</strong> — measures the performance of our Meta (Facebook/Instagram) advertising and which visits lead to inquiries. Cookies such as <code>_fbp</code>, kept up to 90 days.</li>
     </ul>
-    <p>Until you accept, Google Analytics runs in Google's Consent Mode with storage denied (no analytics or advertising cookies are set) and the Meta Pixel does not send data. If you click <em>Reject non-essential</em>, they stay off.</p>
+    <p><strong>Visitors in the United States and most other countries:</strong> these tools are on by default. You can turn them off at any time with <em>Your privacy choices</em> at the bottom of any page (choose <em>Reject non-essential</em>), or with a Global Privacy Control signal.</p>
+    <p><strong>Visitors in the European Economic Area, the United Kingdom and Switzerland:</strong> these tools stay off until you click <em>Accept all</em> in our cookie banner. Until then, Google Analytics runs in Google's Consent Mode with storage denied (no analytics or advertising cookies are set) and the Meta Pixel does not send data. If you click <em>Reject non-essential</em>, they stay off.</p>
     <p><strong>Changing your choice.</strong> Use <em>Your privacy choices</em> at the bottom of any page to accept or withdraw consent at any time. You can also clear the Site's data in your browser, opt out of personalized advertising through <a href="https://www.facebook.com/settings/?tab=ads" target="_blank" rel="noopener">Meta's ad preferences</a>, or use the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics opt-out browser add-on</a>.</p>
     <p><strong>Global Privacy Control.</strong> If your browser sends a Global Privacy Control (GPC) signal, we treat it as a request to opt out: analytics and advertising tools stay off and the banner won't turn them on.</p>
 
     <h2>How we use your information</h2>
     <p>We use the information we collect to: respond to your inquiry and evaluate whether our services are a fit for your brand; operate, maintain, and improve the Site; and measure and improve the performance of our marketing and advertising, including which campaigns and content lead to genuine inquiries.</p>
-    <p>We do not sell your personal information for money. Under some U.S. state laws (for example California's), letting the Meta Pixel measure our ads may count as "sharing" personal information for cross-context behavioral advertising. It only happens if you accept cookies, and you can opt out at any time with <em>Your privacy choices</em> or a Global Privacy Control signal.</p>
+    <p>We do not sell your personal information for money. Under some U.S. state laws (for example California's), letting the Meta Pixel measure our ads may count as "sharing" personal information for cross-context behavioral advertising. You can opt out of this at any time with <em>Your privacy choices</em> (choose <em>Reject non-essential</em>) or a Global Privacy Control signal, and visitors in Europe are only measured if they accept cookies.</p>
 
     <h2>Who we share information with</h2>
     <p>We share information with the third-party service providers who help us run the Site and our business, including: <strong>Netlify</strong> (website hosting), <strong>FormSubmit.co</strong> (delivers contact form submissions to our email), <strong>Calendly</strong> (call scheduling), <strong>Google</strong> (analytics), and <strong>Meta</strong> (advertising measurement). Each of these providers processes data under their own privacy policies. We may also disclose information if required by law.</p>
@@ -219,7 +226,7 @@ fbq('track', 'PageView');
         <div>
           <h3>Services</h3>
           <ul>
-            <li><a href="services.html">Amazon account management</a></li>
+            <li><a href="amazon-account-management.html">Amazon account management</a></li>
             <li><a href="services.html">Amazon &amp; Meta advertising</a></li>
             <li><a href="services.html">Creative services</a></li>
             <li><a href="services.html">TikTok Shop</a></li>
@@ -250,6 +257,6 @@ fbq('track', 'PageView');
   </div>
 </footer>
 
-<script src="js/main.js?v=12" defer></script>
+<script src="js/main.js?v=13" defer></script>
 </body>
 </html>
